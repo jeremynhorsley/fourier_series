@@ -1,0 +1,31 @@
+% Part 2b 
+k = 1;
+N = 16;
+n = 0:1:(N-1);
+phi_k = exp(1i*k*n*2*pi/N);
+phi_k_N = exp(1i*(k+N)*n*2*pi/N);
+y1 = round(phi_k); 
+y2 = round(phi_k_N);
+u = isequal(y1,y2); 
+for n = 1:3;
+if u == 1
+display('y1 and y2 equal')
+end
+end
+N = 16;
+k = (1:1:N)';
+n = 0:1:(N-1);
+phi_k = exp(1i*k*n*2*pi/N);
+round(real(phi_k' * phi_k/N))
+
+%315 lab 5
+%Part 3
+subplot(4,1,1)
+plotfs(1,2,1)
+legend('M=1')
+subplot(4,1,2)
+plotfs(1,2,3)
+legend('M=3')
+subplot(4,1,3)
+plotfs(1,2,5)
+legend('M=5')
