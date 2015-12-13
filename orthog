@@ -1,0 +1,38 @@
+% Create arrays phi_k[n] by sampling phi_k(t)
+% at multiples of interval delta
+% delta = an integer fraction N of the fundamental period
+% t = n*delta, delta = To/N
+% phi_k[n] = exp(j*k*2*pi*n/N) (j=1i in matlab)
+N = 16;
+k = [1 2]';
+m = [1 2]';
+n = 0:1:N-1;
+phi_1 = exp(1i*k*2*pi*n/N);
+phi_2 = exp(1i*m*2*pi*n/N);
+% taking x.*conj(y) is the same as x*y' because the y' transposes and turn
+% y into its conjuget at the same time if y is a complex number. 
+orthog = round(real((1/N)*(phi_1*phi_2'))) %if we don't round we get garba
+% If phi_1 and phi_2 are orthogonal, "orthog" will look like identity matr
+% k(1,1)* m(1,1) k(1,2)*m(1,2)
+% 1 * 1 1 * 2 
+% 2 * 1 2 * 2
+% | 1 0 |
+% = | 0 1 |
+%Part 2b
+k = 1:N;
+% showing that phi-k[n] = phi_k+N [n] for all n
+phi_k = exp(1i*k'*n*2*pi/N);
+phi_k_plus_N = exp(1i*(k'+N)*n*2*pi/N);
+u = isequal(round(phi_k),round(phi_k_plus_N)); %checks to see if two funct
+for n = 1:N;
+if u == 1
+for k = n;
+display(['phi(' num2str(k) ') and phi(' num2str(k+N) ') equal'])
+end
+end
+end
+% Checking the orthogonality of N functions against each other will look
+% just like an identity matrix as before when checking k=1,2 and m=1,2.
+% now we are checking k=1,2,3,...16 against m=1,2,3,...16. Every time k=m
+% the result = 1. For all other values, the result = 0. 
+all_orthog = round(real((1/N)*(phi_k*phi_k_plus_N')))
