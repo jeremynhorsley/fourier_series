@@ -1,0 +1,41 @@
+% Jeremyn Horsley
+% ENGR 315 Lab 5
+% Fourier Series
+% Part 1
+% Phi_k(t) = exp(j*k*wo*t)... complex expomential basis fxn.
+% Phi_1(t) is periodic with period of 64 sec. Create an
+% array that corresponds to one period, sampled at 1 second 
+% intervals.
+% x[n] = exp(j1wo(0:63))
+wo = 2*pi/64; %fundamental frequency
+t = 0:1:63; %sampled at 1 second intervals
+subplot(121)
+k = 1; %Phi_k is Phi_1
+x = exp(1i*k*wo*t); 
+plot(x, 'ro', 'MarkerFaceColor', 'r'); 
+title ('\fontname{symbol}j_1(t)');
+grid on;
+grid on; 
+axis square;
+xL = xlim;
+yL = ylim;
+line([0 0], yL); 
+line(xL, [0 0]); 
+xlabel('Re (x)');
+ylabel('Im (x)');
+
+% One period of an array that corresponds to Phi_4(t)
+% k is increased to 4
+subplot(122)
+k = 4;
+x = exp(1i*k*wo*t);
+plot(x, 'ro', 'MarkerFaceColor', 'r');
+title ('\fontname{symbol}j_4(t)');
+grid on;
+axis square;
+xL = xlim;
+yL = ylim;
+line([0 0], yL); 
+line(xL, [0 0]); 
+xlabel('Re (x)');
+ylabel('Im (x)');
